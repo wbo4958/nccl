@@ -12,7 +12,7 @@
 int ncclDebugLevel = -1;
 thread_local int ncclDebugNoWarn = 0;
 uint64_t ncclDebugMask = NCCL_INIT; // Default debug sub-system mask is INIT
-FILE *ncclDebugFile = stdout;
+FILE *ncclDebugFile = stderr;
 pthread_mutex_t ncclDebugLock = PTHREAD_MUTEX_INITIALIZER;
 
 void ncclDebugInit() {
