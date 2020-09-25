@@ -6,8 +6,8 @@ function compile() {
   make -j4 src.build && make pkg.txz.build
   cuda=$(readlink /usr/local/cuda | tr -d -)
   pkg=nccl_${nccl_version}+${cuda}_x86_64
-  mkdir -p /home/bobwang/tools/nccl
-  rm -fr /home/bobwang/tools/nccl/$pkg*
+  mkdir -p /home/bobwang/tools/library/nccl
+  rm -fr /home/bobwang/tools/library/nccl/$pkg*
   tar -xf build/pkg/txz/$pkg.txz -C /home/bobwang/tools/nccl
 }
 
