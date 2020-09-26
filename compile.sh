@@ -1,14 +1,16 @@
 #!/bin/bash
 
 nccl_version=2.7.8-1
+nccl_install_path=/home/bobwang/work.d/nvspark/library/nccl
 
 function compile() {
+  make clean
   make -j4 src.build && make pkg.txz.build
   cuda=$(readlink /usr/local/cuda | tr -d -)
   pkg=nccl_${nccl_version}+${cuda}_x86_64
-  mkdir -p /home/bobwang/tools/library/nccl
-  rm -fr /home/bobwang/tools/library/nccl/$pkg*
-  tar -xf build/pkg/txz/$pkg.txz -C /home/bobwang/tools/nccl
+  mkdir -p $nccl_install_path
+  rm -fr $nccl_install_path/$pkg*
+  tar -xf build/pkg/txz/$pkg.txz -C $nccl_install_path
 }
 
 if [[ "$@" = *all* ]]; then
