@@ -3,9 +3,11 @@
 nccl_version=2.7.8-1
 nccl_install_path=/home/bobwang/work.d/nvspark/library/nccl
 
+dir=`pwd`
+
 function compile() {
-  make clean
-  make -j4 src.build && make pkg.txz.build
+  cd $dir
+  make clean &&  make -j4 src.build && make pkg.txz.build
   cuda=$(readlink /usr/local/cuda | tr -d -)
   pkg=nccl_${nccl_version}+${cuda}_x86_64
   mkdir -p $nccl_install_path
