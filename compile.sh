@@ -8,10 +8,12 @@ dir=`pwd`
 function compile() {
   cd $dir
   make clean &&  make -j4 src.build && make pkg.txz.build
-  cuda=$(readlink /usr/local/cuda | tr -d -)
-  pkg=nccl_${nccl_version}+${cuda}_x86_64
+  cuda_path=$(readlink /usr/local/cuda | tr -d -)
+  cuda=`basename $cuda_path`
+  pkg="nccl_${nccl_version}+${cuda}_x86_64"
   mkdir -p $nccl_install_path
   rm -fr $nccl_install_path/$pkg*
+  echo "${pkg}.txz"
   tar -xf build/pkg/txz/$pkg.txz -C $nccl_install_path
 }
 
